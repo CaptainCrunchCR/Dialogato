@@ -1,0 +1,472 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-primary-950 text-white;
+    background: linear-gradient(135deg, #0a1929 0%, #0c4a6e 50%, #581c87 100%);
+    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(
+        at 40% 20%,
+        rgba(34, 211, 238, 0.15) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 80% 0%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  * {
+    @apply scroll-smooth;
+  }
+
+  /* Prevent layout shift */
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .btn-primary {
+    @apply relative bg-accent-600 text-white px-8 py-4 rounded-2xl hover:bg-accent-500 transition-all duration-300 font-semibold shadow-elegant hover:shadow-glow overflow-hidden;
+  }
+
+  .btn-primary::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 hover:opacity-10 transition-opacity duration-500;
+    transform: translateX(-100%);
+    animation: shimmer 3s infinite;
+  }
+
+  .btn-secondary {
+    @apply relative bg-white/5 backdrop-blur-md text-white px-8 py-4 rounded-2xl hover:bg-white/10 transition-all duration-300 font-semibold border border-white/10 hover:border-white/20 shadow-elegant;
+  }
+
+  .card {
+    @apply relative bg-white/[0.02] backdrop-blur-xl rounded-3xl shadow-elegant p-8 hover:shadow-3d transition-all duration-500 border border-white/[0.08] hover:border-white/[0.12] overflow-hidden;
+  }
+
+  .card::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-br from-accent-500/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none;
+  }
+
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-elegant;
+  }
+
+  .glow-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-white via-accent-400 to-white;
+    background-size: 200% auto;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  /* Page transition */
+  .page-transition {
+    animation: fadeInUp 0.6s ease-out;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Storm Animation Keyframes */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(var(--rotation, 0deg));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh) rotate(var(--rotation, 0deg));
+    opacity: 0;
+  }
+}
+
+@keyframes fall3d {
+  0% {
+    transform: perspective(1000px) translateY(-150px)
+      translateZ(var(--depth, 0px)) rotateX(var(--rotX, 0deg))
+      rotateY(var(--rotY, 0deg)) rotateZ(var(--rotZ, 0deg))
+      scale(var(--scale, 1));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: perspective(1000px) translateY(110vh)
+      translateZ(var(--depth, 0px)) rotateX(var(--rotX, 0deg))
+      rotateY(var(--rotY, 0deg)) rotateZ(calc(var(--rotZ, 0deg) + 180deg))
+      scale(var(--scale, 1));
+    opacity: 0;
+  }
+}
+
+/* 4D Supercharged Yellow Pills Animation */
+@keyframes superchargedFall {
+  0% {
+    transform: translate3d(0, -200px, var(--depth, 0px))
+      rotateX(var(--rotX, 0deg)) rotateY(var(--rotY, 0deg))
+      rotateZ(var(--rotZ, 0deg)) scale(var(--scale, 1));
+    opacity: 0;
+    filter: brightness(2) saturate(1.5) hue-rotate(0deg);
+    will-change: transform, opacity, filter;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    filter: brightness(1.8) saturate(1.4) hue-rotate(10deg);
+  }
+  50% {
+    filter: brightness(1.5) saturate(1.3) hue-rotate(-10deg);
+  }
+  75% {
+    filter: brightness(1.6) saturate(1.4) hue-rotate(5deg);
+  }
+  95% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, 120vh, var(--depth, 0px))
+      rotateX(calc(var(--rotX, 0deg) + 360deg))
+      rotateY(calc(var(--rotY, 0deg) + 180deg))
+      rotateZ(calc(var(--rotZ, 0deg) + 270deg))
+      scale(calc(var(--scale, 1) * 1.2));
+    opacity: 0;
+    filter: brightness(2.5) saturate(1.6) hue-rotate(0deg);
+  }
+}
+
+@keyframes lightning {
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+  92%,
+  94%,
+  96% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+  93%,
+  95% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-lightning {
+  animation: lightning 4s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Purple energy core pulse */
+@keyframes pulsePurple {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1.5);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 1), 0 0 60px rgba(147, 51, 234, 0.7),
+      inset 0 0 20px rgba(216, 180, 254, 0.8);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(2);
+    box-shadow: 0 0 50px rgba(168, 85, 247, 1.2),
+      0 0 100px rgba(147, 51, 234, 1), inset 0 0 30px rgba(216, 180, 254, 1);
+  }
+}
+
+/* Energy Crystal Animations */
+@keyframes crystalFall {
+  0% {
+    transform: translate3d(0, -100px, 0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(0, 120vh, 0) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes crystalSpin {
+  0% {
+    transform: rotate(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotate(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes crystalPulse {
+  0%,
+  100% {
+    filter: brightness(1.5) saturate(1.4) contrast(1.2) hue-rotate(0deg);
+  }
+  33% {
+    filter: brightness(2) saturate(1.6) contrast(1.3) hue-rotate(10deg);
+  }
+  66% {
+    filter: brightness(1.7) saturate(1.5) contrast(1.25) hue-rotate(-10deg);
+  }
+}
+
+/* Epic 3-Stage Rocket Launch Animations */
+
+/* Stage 1: Breaking Pieces */
+@keyframes break-piece {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--tx, 100px)), calc(var(--ty, -100px)))
+      rotate(720deg) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-break-piece {
+  --tx: calc((random() - 0.5) * 400px);
+  --ty: calc((random() - 0.5) * 400px);
+  animation: break-piece 0.8s ease-out forwards;
+}
+
+/* Stage 2: Energy Surge from Floor */
+@keyframes energy-beam {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0.8;
+    filter: blur(4px);
+  }
+}
+
+@keyframes floor-energy {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes floor-pulse {
+  0%,
+  100% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, 0) scale(1.5);
+    opacity: 1;
+  }
+}
+
+.animate-energy-beam {
+  transform-origin: bottom;
+  animation: energy-beam 0.6s ease-out forwards;
+}
+
+.animate-floor-energy {
+  transform-origin: bottom;
+  animation: floor-energy 0.6s ease-out forwards;
+}
+
+.animate-floor-pulse {
+  animation: floor-pulse 0.6s ease-in-out infinite;
+}
+
+/* Stage 3: Giant Explosion */
+@keyframes explosion-core {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  30% {
+    opacity: 1;
+    filter: blur(10px);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+    filter: blur(30px);
+  }
+}
+
+@keyframes explosion-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 0;
+  }
+}
+
+@keyframes explosion-particle {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--particle-angle)) translateX(0)
+      scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--particle-angle))
+      translateX(300px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explosion-shockwave {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0;
+  }
+}
+
+.animate-explosion-core {
+  animation: explosion-core 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+.animate-explosion-ring {
+  animation: explosion-ring 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+.animate-explosion-particle {
+  animation: explosion-particle 0.6s ease-out forwards;
+}
+
+.animate-explosion-shockwave {
+  animation: explosion-shockwave 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+/* Button Launch */
+@keyframes rocket-launch {
+  0% {
+    transform: scale(1) translateY(0);
+    filter: brightness(1);
+  }
+  /* Stage 1: Shake (0-0.4s) */
+  10%,
+  20%,
+  30% {
+    transform: scale(1) translateX(-5px);
+  }
+  15%,
+  25%,
+  35% {
+    transform: scale(1) translateX(5px);
+  }
+  /* Stage 2: Charge (0.4-0.8s) */
+  40% {
+    transform: scale(0.9) translateY(0);
+    filter: brightness(1.5);
+  }
+  /* Stage 3: Explosion & Launch (0.8-1.5s) */
+  60% {
+    transform: scale(1.2) translateY(-30px);
+    filter: brightness(3);
+  }
+  100% {
+    transform: scale(0.2) translateY(-300vh);
+    filter: brightness(5);
+    opacity: 0;
+  }
+}
+
+.animate-rocket-launch {
+  animation: rocket-launch 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
