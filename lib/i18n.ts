@@ -34,28 +34,6 @@ export function parseProperties(content: string): Translations {
   return translations;
 }
 
-// Detect user's locale from browser
-export function detectLocale(): Locale {
-  if (typeof window === "undefined") {
-    return "en";
-  }
-
-  const browserLang = navigator.language.toLowerCase();
-
-  // Check if Spanish
-  if (browserLang.startsWith("es")) {
-    return "es";
-  }
-
-  // Check if Chinese
-  if (browserLang.startsWith("zh")) {
-    return "zh";
-  }
-
-  // Default to English
-  return "en";
-}
-
 // Replace placeholders in translation strings
 export function interpolate(
   text: string,

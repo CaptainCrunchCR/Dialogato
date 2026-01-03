@@ -7,13 +7,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import {
-  Locale,
-  Translations,
-  parseProperties,
-  detectLocale,
-  interpolate,
-} from "@/lib/i18n";
+import { Locale, Translations, parseProperties, interpolate } from "@/lib/i18n";
 
 interface LanguageContextType {
   locale: Locale;
@@ -35,7 +29,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   const [translations, setTranslations] = useState<Translations>({});
   const [isLoading, setIsLoading] = useState(true);
 
-  // Detect and set initial locale on mount
+  // Set initial locale on mount - defaults to Spanish for LATAM market
   useEffect(() => {
     const savedLocale = localStorage.getItem("locale") as Locale;
     if (
@@ -44,9 +38,9 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     ) {
       setLocaleState(savedLocale);
     } else {
-      const detectedLocale = detectLocale();
-      setLocaleState(detectedLocale);
-      localStorage.setItem("locale", detectedLocale);
+      // Default to Spanish for LATAM market
+      setLocaleState("es");
+      localStorage.setItem("locale", "es");
     }
   }, []);
 
