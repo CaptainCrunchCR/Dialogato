@@ -10,8 +10,14 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PWAInstall from "@/components/PWAInstall";
+import MaintenanceMode from "@/components/MaintenanceMode";
+import { isMaintenanceMode } from "@/lib/maintenance";
 
 export default function Home() {
+  if (isMaintenanceMode()) {
+    return <MaintenanceMode />;
+  }
+
   return (
     <main className="page-transition">
       <Navbar />

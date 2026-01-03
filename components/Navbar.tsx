@@ -5,7 +5,11 @@ import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function Navbar() {
+interface NavbarProps {
+  simplified?: boolean;
+}
+
+export default function Navbar({ simplified = false }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
 
@@ -33,50 +37,62 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-1">
-              {navItems.map((item) => (
+          {!simplified ? (
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-center space-x-1">
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="relative text-slate-300 hover:text-accent-300 px-4 py-2 rounded-xl transition-all duration-300 font-medium group"
+                  >
+                    <span className="relative z-10">{item.name}</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent-500/10 to-secondary-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  </a>
+                ))}
+                <div className="ml-4">
+                  <LanguageSwitcher />
+                </div>
                 <a
-                  key={item.name}
-                  href={item.href}
-                  className="relative text-slate-300 hover:text-accent-300 px-4 py-2 rounded-xl transition-all duration-300 font-medium group"
+                  href="#cta"
+                  className="ml-4 relative bg-gradient-to-r from-accent-500 to-secondary-500 text-white px-6 py-2.5 rounded-xl hover:from-accent-400 hover:to-secondary-400 transition-all duration-300 font-semibold shadow-glow hover:shadow-neon overflow-hidden group"
                 >
-                  <span className="relative z-10">{item.name}</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent-500/10 to-secondary-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span className="relative z-10">{t("nav.getStarted")}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 </a>
-              ))}
-              <div className="ml-4">
-                <LanguageSwitcher />
               </div>
-              <a
-                href="#cta"
-                className="ml-4 relative bg-gradient-to-r from-accent-500 to-secondary-500 text-white px-6 py-2.5 rounded-xl hover:from-accent-400 hover:to-secondary-400 transition-all duration-300 font-semibold shadow-glow hover:shadow-neon overflow-hidden group"
-              >
-                <span className="relative z-10">{t("nav.getStarted")}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              </a>
             </div>
-          </div>
+          ) : (
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
+          )}
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-3">
-            <LanguageSwitcher />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl bg-gradient-to-br from-accent-500/20 to-secondary-500/20 border border-accent-400/30 hover:border-accent-400/50 transition-all"
-            >
-              {isOpen ? (
-                <X size={24} className="text-accent-300" />
-              ) : (
-                <Menu size={24} className="text-accent-300" />
-              )}
-            </button>
-          </div>
+          {!simplified ? (
+            <div className="md:hidden flex items-center gap-3">
+              <LanguageSwitcher />
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-xl bg-gradient-to-br from-accent-500/20 to-secondary-500/20 border border-accent-400/30 hover:border-accent-400/50 transition-all"
+              >
+                {isOpen ? (
+                  <X size={24} className="text-accent-300" />
+                ) : (
+                  <Menu size={24} className="text-accent-300" />
+                )}
+              </button>
+            </div>
+          ) : (
+            <div className="md:hidden">
+              <LanguageSwitcher />
+            </div>
+          )}
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      {isOpen && (
+      {!simplified && isOpen && (
         <div className="md:hidden backdrop-blur-2xl bg-gradient-to-b from-primary-950/98 to-secondary-900/98 border-t border-accent-400/20 animate-slide-up shadow-neon">
           <div className="container-custom py-6 space-y-1">
             {navItems.map((item) => (

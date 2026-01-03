@@ -72,10 +72,10 @@ export default function Footer() {
                   className="flex-shrink-0 mt-1 text-primary-400"
                 />
                 <a
-                  href="mailto:hello@dialogato.com"
+                  href={`mailto:${t("footer.contact.emailaddress")}`}
                   className="hover:text-primary-400 transition-colors"
                 >
-                  {t("footer.contact.email")}
+                  {t("footer.contact.emailaddress")}
                 </a>
               </li>
               <li className="flex items-start gap-3">
