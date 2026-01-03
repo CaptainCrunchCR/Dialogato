@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { X, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function PWAInstall() {
+  const { t } = useLanguage();
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
@@ -122,12 +124,12 @@ export default function PWAInstall() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-white mb-1">
-                  Instalar Dialogato
+                  {t("pwa.install.title")}
                 </h3>
                 <p className="text-sm text-slate-300">
                   {isIOS
-                    ? "Agrega a tu pantalla de inicio para acceso rápido"
-                    : "Instala la app para una mejor experiencia"}
+                    ? t("pwa.install.description.ios")
+                    : t("pwa.install.description.android")}
                 </p>
               </div>
             </div>
@@ -135,14 +137,14 @@ export default function PWAInstall() {
             {isIOS ? (
               // iOS Instructions
               <div className="bg-primary-950/50 rounded-xl p-4 mb-4 text-sm text-slate-300">
-                <p className="mb-2">Para instalar en iOS:</p>
+                <p className="mb-2">{t("pwa.install.ios.instructions")}</p>
                 <ol className="list-decimal list-inside space-y-1 text-xs">
                   <li>
-                    Toca el botón de compartir{" "}
+                    {t("pwa.install.ios.step1")}{" "}
                     <span className="inline-block">⎋</span>
                   </li>
-                  <li>Selecciona &ldquo;Agregar a pantalla de inicio&rdquo;</li>
-                  <li>Toca &ldquo;Agregar&rdquo;</li>
+                  <li>{t("pwa.install.ios.step2")}</li>
+                  <li>{t("pwa.install.ios.step3")}</li>
                 </ol>
               </div>
             ) : (
@@ -151,15 +153,15 @@ export default function PWAInstall() {
                 onClick={handleInstallClick}
                 className="w-full bg-gradient-to-r from-accent-500 to-secondary-500 text-white font-bold py-3 px-6 rounded-xl hover:shadow-glow-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                Instalar Ahora
+                {t("pwa.install.button")}
               </button>
             )}
 
             {/* Benefits */}
             <div className="mt-4 flex items-center justify-center gap-4 text-xs text-slate-400">
-              <span>✓ Acceso rápido</span>
-              <span>✓ Sin navegador</span>
-              <span>✓ Offline</span>
+              <span>✓ {t("pwa.install.benefit1")}</span>
+              <span>✓ {t("pwa.install.benefit2")}</span>
+              <span>✓ {t("pwa.install.benefit3")}</span>
             </div>
           </div>
         </motion.div>

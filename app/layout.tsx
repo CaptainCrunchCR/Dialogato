@@ -78,11 +78,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-    // yahoo: "your-yahoo-verification-code",
-  },
+  // Add verification codes when available:
+  // verification: {
+  //   google: "your-google-verification-code",
+  // },
 };
 
 export default function RootLayout({
@@ -105,9 +104,10 @@ export default function RootLayout({
               operatingSystem: "Web",
               offers: {
                 "@type": "Offer",
-                price: "0",
+                price: "900000",
                 priceCurrency: "CRC",
                 availability: "https://schema.org/InStock",
+                priceValidUntil: "2026-12-31",
               },
               aggregateRating: {
                 "@type": "AggregateRating",
@@ -135,10 +135,11 @@ export default function RootLayout({
                 areaServed: "CR",
                 availableLanguage: ["Spanish", "English"],
               },
-              sameAs: [
-                "https://www.linkedin.com/company/dialogato",
-                "https://www.instagram.com/dialogato",
-              ],
+              // Add social media links when available:
+              // sameAs: [
+              //   "https://www.linkedin.com/company/dialogato",
+              //   "https://www.instagram.com/dialogato",
+              // ],
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "CR",
@@ -250,7 +251,8 @@ export default function RootLayout({
           sizes="16x16"
           href="/icons/icon-16x16.png"
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
 
         {/* Android PWA */}
         <meta name="mobile-web-app-capable" content="yes" />
