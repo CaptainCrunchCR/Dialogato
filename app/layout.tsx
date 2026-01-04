@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import Navbar from "@/components/Navbar";
+import {
+  generateMetadata as genMeta,
+  generateStructuredData,
+  getLangCode,
+} from "@/lib/metadata";
+import type { Locale } from "@/lib/i18n";
+import DynamicLang from "@/components/DynamicLang";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,143 +17,44 @@ const inter = Inter({
   preload: true,
 });
 
-export const metadata: Metadata = {
-  title:
-    "Dialogato - Agentes IA para WhatsApp Business en Costa Rica | Automatización Inteligente",
-  description:
-    "Transforma tu negocio en Costa Rica con agentes de IA inteligentes para WhatsApp. Califica leads automáticamente, ahorra tiempo y aumenta ventas. Prueba sin riesgo.",
-  keywords: [
-    "WhatsApp Business Costa Rica",
-    "automatización WhatsApp",
-    "chatbot IA Costa Rica",
-    "agentes inteligentes WhatsApp",
-    "calificación de leads",
-    "servicio al cliente automatizado",
-    "IA conversacional",
-    "chatbot para empresas",
-    "automatización Costa Rica",
-    "WhatsApp API Costa Rica",
-  ].join(", "),
-  authors: [{ name: "Dialogato" }],
-  creator: "Dialogato",
-  publisher: "Dialogato",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL("https://dialogato.com"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      "es-CR": "/",
-      "en-US": "/en",
-      "zh-CN": "/zh",
-    },
-  },
-  openGraph: {
-    title: "Dialogato - Agentes IA para WhatsApp Business en Costa Rica",
-    description:
-      "Automatiza conversaciones, califica leads y ahorra tiempo con agentes de IA inteligentes para WhatsApp Business. Servicio especializado en Costa Rica.",
-    url: "https://dialogato.com",
-    siteName: "Dialogato",
-    locale: "es_CR",
-    type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Dialogato - Agentes IA para WhatsApp Business",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Dialogato - Agentes IA para WhatsApp Business en Costa Rica",
-    description:
-      "Automatiza conversaciones y califica leads con IA inteligente para WhatsApp Business.",
-    images: ["/twitter-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  // Add verification codes when available:
-  // verification: {
-  //   google: "your-google-verification-code",
-  // },
-};
+// Get default locale from browser or default to Spanish for LATAM market
+function getDefaultLocale(): Locale {
+  if (typeof window !== "undefined") {
+    const saved = localStorage.getItem("locale") as Locale;
+    if (saved && ["en", "es", "zh"].includes(saved)) {
+      return saved;
+    }
+  }
+  return "es"; // Default to Spanish for LATAM market
+}
+
+// Generate metadata with default locale (Spanish for LATAM)
+export const metadata: Metadata = genMeta("es");
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Default to Spanish for server-side rendering
+  const defaultLocale: Locale = "es";
+  const structuredData = generateStructuredData(defaultLocale);
+  const langCode = getLangCode(defaultLocale);
+
   return (
-    <html lang="es-CR" className="scroll-smooth">
+    <html lang={langCode} className="scroll-smooth">
       <head>
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "Dialogato",
-              applicationCategory: "BusinessApplication",
-              operatingSystem: "Web",
-              offers: {
-                "@type": "Offer",
-                price: "900000",
-                priceCurrency: "CRC",
-                availability: "https://schema.org/InStock",
-                priceValidUntil: "2026-12-31",
-              },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5",
-                ratingCount: "47",
-              },
-              description:
-                "Agentes de IA inteligentes para WhatsApp Business en Costa Rica. Automatiza conversaciones y califica leads.",
-            }),
+            __html: JSON.stringify(structuredData.software),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Dialogato",
-              url: "https://dialogato.com",
-              logo: "https://dialogato.com/logo.png",
-              contactPoint: {
-                "@type": "ContactPoint",
-                telephone: "+506-8888-8888",
-                contactType: "Customer Service",
-                areaServed: "CR",
-                availableLanguage: ["Spanish", "English"],
-              },
-              // Add social media links when available:
-              // sameAs: [
-              //   "https://www.linkedin.com/company/dialogato",
-              //   "https://www.instagram.com/dialogato",
-              // ],
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "CR",
-                addressLocality: "San José",
-              },
-            }),
+            __html: JSON.stringify(structuredData.organization),
           }}
         />
         {/* PWA Configuration */}
@@ -266,7 +175,11 @@ export default function RootLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <DynamicLang />
+          <Navbar />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
