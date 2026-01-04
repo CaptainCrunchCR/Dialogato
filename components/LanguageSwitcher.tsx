@@ -9,7 +9,7 @@ import type { Locale } from "@/lib/i18n";
 const USFlag = () => (
   <svg
     viewBox="0 0 32 32"
-    className="w-6 h-6 rounded-full border-2 border-white/20"
+    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white/20"
   >
     <circle cx="16" cy="16" r="16" fill="#B22234" />
     <path
@@ -24,7 +24,7 @@ const USFlag = () => (
 const SpainFlag = () => (
   <svg
     viewBox="0 0 32 32"
-    className="w-6 h-6 rounded-full border-2 border-white/20"
+    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white/20"
   >
     <circle cx="16" cy="16" r="16" fill="#AA151B" />
     <rect fill="#AA151B" width="32" height="8" />
@@ -36,7 +36,7 @@ const SpainFlag = () => (
 const ChinaFlag = () => (
   <svg
     viewBox="0 0 32 32"
-    className="w-6 h-6 rounded-full border-2 border-white/20"
+    className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white/20"
   >
     <circle cx="16" cy="16" r="16" fill="#DE2910" />
     <g fill="#FFDE00">
@@ -101,25 +101,25 @@ export default function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="backdrop-blur-xl bg-gradient-to-r from-accent-500/10 to-secondary-500/10 flex items-center gap-2 px-3 py-2 rounded-xl border border-accent-400/30 hover:border-accent-400/50 transition-all duration-300 group hover:shadow-glow min-w-[90px]"
+        className="backdrop-blur-xl bg-gradient-to-r from-accent-500/10 to-secondary-500/10 flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 rounded-lg sm:rounded-xl border border-accent-400/30 hover:border-accent-400/50 transition-all duration-300 group hover:shadow-glow min-w-[70px] sm:min-w-[90px] h-9 sm:h-10"
         aria-label="Switch language"
       >
         <span className="flex-shrink-0">
           <currentLanguage.FlagComponent />
         </span>
-        <span className="font-semibold text-slate-200 group-hover:text-white transition-colors text-sm flex-1 text-center">
+        <span className="font-semibold text-slate-200 group-hover:text-white transition-colors text-xs sm:text-sm flex-1 text-center">
           {currentLanguage.label}
         </span>
         <ChevronDown
-          size={12}
-          className={`text-accent-300 group-hover:text-accent-400 transition-all duration-300 ${
+          size={10}
+          className={`sm:w-3 sm:h-3 text-accent-300 group-hover:text-accent-400 transition-all duration-300 flex-shrink-0 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 right-0 backdrop-blur-2xl bg-gradient-to-b from-primary-950/98 to-secondary-900/98 border border-accent-400/30 rounded-xl shadow-neon overflow-hidden w-[200px] animate-slide-up z-50">
+        <div className="absolute top-full mt-2 right-0 backdrop-blur-2xl bg-gradient-to-b from-primary-950/98 to-secondary-900/98 border border-accent-400/30 rounded-lg sm:rounded-xl shadow-neon overflow-hidden w-[160px] sm:w-[200px] animate-slide-up z-50">
           {languages.map((lang, index) => (
             <button
               key={lang.code}
