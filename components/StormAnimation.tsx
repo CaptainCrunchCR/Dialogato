@@ -178,7 +178,7 @@ export default function StormAnimation() {
           </div>
 
           {/* Powerful Text */}
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-tight">
             <span className="block text-white drop-shadow-lg">
               {t("storm.title.part1")}
             </span>
@@ -187,14 +187,14 @@ export default function StormAnimation() {
             </span>
           </h2>
 
-          <p className="text-xl sm:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
             {t("storm.description")}
           </p>
 
           {/* Energy Stats */}
           <div className="flex flex-wrap justify-center gap-8 mt-12">
             <div className="group">
-              <div className="text-5xl font-black bg-gradient-to-r from-yellow-400 to-accent-400 text-transparent bg-clip-text mb-2 animate-pulse-glow">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-yellow-400 to-accent-400 text-transparent bg-clip-text mb-2 animate-pulse-glow">
                 ⚡ {t("storm.stat1.value")}
               </div>
               <div className="text-slate-400 font-medium">
@@ -202,7 +202,7 @@ export default function StormAnimation() {
               </div>
             </div>
             <div className="group">
-              <div className="text-5xl font-black bg-gradient-to-r from-accent-400 to-secondary-400 text-transparent bg-clip-text mb-2 animate-pulse-glow">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-accent-400 to-secondary-400 text-transparent bg-clip-text mb-2 animate-pulse-glow">
                 {t("storm.stat2.value")}
               </div>
               <div className="text-slate-400 font-medium">
@@ -210,7 +210,7 @@ export default function StormAnimation() {
               </div>
             </div>
             <div className="group">
-              <div className="text-5xl font-black bg-gradient-to-r from-secondary-400 to-yellow-400 text-transparent bg-clip-text mb-2 animate-pulse-glow">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-secondary-400 to-yellow-400 text-transparent bg-clip-text mb-2 animate-pulse-glow">
                 {t("storm.stat3.value")}
               </div>
               <div className="text-slate-400 font-medium">

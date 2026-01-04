@@ -18,7 +18,7 @@ export default function Pricing() {
       <div className="container-custom relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 md:mb-20 px-4 sm:px-0">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 sm:mb-6 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-4 sm:mb-6 tracking-tight">
             {t("pricing.title")}
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-400 font-light">
@@ -40,12 +40,12 @@ export default function Pricing() {
                 <div className="flex-1">
                   <div className="inline-flex items-center gap-2 mb-4">
                     <Sparkles size={24} className="text-accent-400" />
-                    <h3 className="text-3xl font-bold text-white tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                       {t("pricing.base.title")}
                     </h3>
                   </div>
                   <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-5xl font-black text-white">
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
                       {t("pricing.base.price")}
                     </span>
                   </div>
@@ -83,7 +83,7 @@ export default function Pricing() {
         {/* Pro Add-ons Section */}
         <div className="mb-16">
           <div className="text-center mb-8">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
               {t("pricing.addons.title")}
             </h3>
             <p className="text-slate-400 font-light">
@@ -120,12 +120,12 @@ export default function Pricing() {
                       />
                     </div>
 
-                    <h3 className="text-2xl font-black text-white tracking-tight mb-3 bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-3 bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
                       {t("pricing.scheduling.title")}
                     </h3>
 
                     <div className="flex items-baseline gap-2 mb-4">
-                      <span className="text-4xl font-black bg-gradient-to-r from-accent-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent">
+                      <span className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-accent-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent">
                         {t("pricing.scheduling.price")}
                       </span>
                       <span className="text-slate-400 text-sm font-semibold">
@@ -191,7 +191,7 @@ export default function Pricing() {
                     </h3>
 
                     <div className="flex items-baseline gap-2 mb-4">
-                      <span className="text-4xl font-black bg-gradient-to-r from-secondary-400 via-accent-400 to-secondary-400 bg-clip-text text-transparent">
+                      <span className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-secondary-400 via-accent-400 to-secondary-400 bg-clip-text text-transparent">
                         {t("pricing.payment.price")}
                       </span>
                       <span className="text-slate-400 text-sm font-semibold">
@@ -234,12 +234,12 @@ export default function Pricing() {
                 <div className="flex-1">
                   <div className="inline-flex items-center gap-2 mb-3">
                     <MessageSquare size={24} className="text-secondary-400" />
-                    <h3 className="text-2xl font-bold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                       {t("pricing.maintenance.title")}
                     </h3>
                   </div>
                   <div className="flex items-baseline gap-2 mb-3">
-                    <span className="text-4xl font-black text-white">
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
                       {t("pricing.maintenance.price")}
                     </span>
                   </div>

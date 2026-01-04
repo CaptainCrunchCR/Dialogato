@@ -75,7 +75,7 @@ export default function Platforms() {
       <div className="container-custom relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 md:mb-20 px-4 sm:px-0">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 sm:mb-6 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-4 sm:mb-6 tracking-tight">
             {t("platforms.title")}
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed font-light">
@@ -98,7 +98,7 @@ export default function Platforms() {
                   >
                     <Logo />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
                     {t(platform.nameKey)}
                   </h3>
                   <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-light">

@@ -152,10 +152,10 @@ export default function PerfectFor() {
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 leading-tight">
               {t("perfectfor.title")}
             </h2>
-            <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
               {t("perfectfor.subtitle")}
             </p>
           </motion.div>
@@ -220,7 +220,7 @@ export default function PerfectFor() {
                     </motion.div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-accent-400 transition-all duration-300">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-accent-400 transition-all duration-300">
                       {t(`perfectfor.${business.key}.title`)}
                     </h3>
 
@@ -271,7 +271,7 @@ export default function PerfectFor() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16 sm:mt-20"
         >
-          <p className="text-xl sm:text-2xl text-slate-300 mb-8">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8">
             {t("perfectfor.cta")}
           </p>
           <a
