@@ -57,6 +57,12 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData.organization),
           }}
         />
+        {/* Domain Verification */}
+        <meta
+          name="facebook-domain-verification"
+          content="gdqe5djkfbjao8bmtq4p0wozb6efe8"
+        />
+
         {/* PWA Configuration */}
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0f172a" />
