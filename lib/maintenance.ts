@@ -1,5 +1,5 @@
 export const MAINTENANCE_MODE = {
-  enabled: true,
+  enabled: false,
   endDate: "2026-02-02T00:00:00",
 };
 

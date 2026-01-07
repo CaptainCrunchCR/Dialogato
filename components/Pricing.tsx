@@ -7,6 +7,7 @@ import {
   Calendar,
   CreditCard,
   Plus,
+  Mic,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -91,13 +92,94 @@ export default function Pricing() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {/* Featured Add-on: Voice-To-Voice */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <div className="relative group">
+              {/* Luxury glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 via-accent-500/30 to-purple-500/30 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+
+              <div className="relative bg-gradient-to-br from-purple-500/10 via-transparent to-accent-500/10 backdrop-blur-xl rounded-3xl border-2 border-purple-500/30 p-8 hover:border-purple-500/50 transition-all duration-500 hover:scale-[1.02] transform">
+                {/* Most Popular badge */}
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <div className="bg-gradient-to-r from-purple-500 to-accent-500 text-white text-xs font-black px-6 py-2 rounded-full shadow-lg shadow-purple-500/50">
+                    ⭐ MOST POPULAR
+                  </div>
+                </div>
+                {/* Premium badge */}
+                <div className="absolute -top-3 -right-3">
+                  <div className="bg-gradient-to-r from-purple-500 to-accent-500 text-white text-xs font-black px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg shadow-purple-500/50">
+                    <Plus size={14} strokeWidth={3} />
+                    {t("pricing.addon.badge")}
+                  </div>
+                </div>
+
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-accent-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                <div className="relative z-10">
+                  <div className="mb-6">
+                    {/* Icon with glow */}
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-accent-500 rounded-2xl mb-4 shadow-lg shadow-purple-500/30 group-hover:shadow-purple-500/50 transition-shadow duration-500">
+                      <Mic size={28} className="text-white" strokeWidth={2.5} />
+                    </div>
+
+                    <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-3 bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
+                      {t("pricing.voice.title")}
+                    </h3>
+
+                    <div className="flex items-baseline gap-2 mb-4">
+                      <span className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-400 via-accent-400 to-purple-400 bg-clip-text text-transparent">
+                        {t("pricing.voice.price")}
+                      </span>
+                      <span className="text-slate-400 text-sm font-semibold">
+                        {t("pricing.addon.onetime")}
+                      </span>
+                    </div>
+
+                    <p className="text-slate-300 font-light leading-relaxed text-base sm:text-lg">
+                      {t("pricing.voice.desc")}
+                    </p>
+
+                    {/* Platform Compatibility Badge */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-purple-500/10 border border-purple-400/30">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400"></div>
+                        <span className="text-xs font-medium text-purple-300">
+                          {t("pricing.voice.platforms")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-4 border-t border-white/10">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-5 h-5 rounded-lg bg-gradient-to-br from-purple-500 to-accent-500 flex items-center justify-center mt-0.5">
+                          <Check
+                            className="text-white"
+                            size={14}
+                            strokeWidth={3}
+                          />
+                        </div>
+                        <span className="text-slate-200 font-light text-sm leading-relaxed">
+                          {t(`pricing.voice.feature${i}`)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Other Add-ons Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {/* Smart Scheduling Add-on */}
             <div className="relative group">
               {/* Luxury glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-accent-500/30 via-secondary-500/30 to-accent-500/30 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
 
-              <div className="relative bg-gradient-to-br from-accent-500/10 via-transparent to-secondary-500/10 backdrop-blur-xl rounded-3xl border-2 border-accent-500/30 p-8 hover:border-accent-500/50 transition-all duration-500 hover:scale-[1.03] transform">
+              <div className="relative bg-gradient-to-br from-accent-500/10 via-transparent to-secondary-500/10 backdrop-blur-xl rounded-3xl border-2 border-accent-500/30 p-8 hover:border-accent-500/50 transition-all duration-500 hover:scale-[1.02] transform">
                 {/* Premium badge */}
                 <div className="absolute -top-3 -right-3">
                   <div className="bg-gradient-to-r from-accent-500 to-secondary-500 text-white text-xs font-black px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg shadow-accent-500/50">
@@ -136,6 +218,16 @@ export default function Pricing() {
                     <p className="text-slate-300 font-light leading-relaxed">
                       {t("pricing.scheduling.desc")}
                     </p>
+
+                    {/* Platform Compatibility Badge */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 border border-white/10">
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent-400"></div>
+                        <span className="text-xs font-medium text-slate-300">
+                          {t("pricing.scheduling.platforms")}
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="space-y-3 pt-4 border-t border-white/10">
@@ -202,6 +294,16 @@ export default function Pricing() {
                     <p className="text-slate-300 font-light leading-relaxed">
                       {t("pricing.payment.desc")}
                     </p>
+
+                    {/* Platform Compatibility Badge */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-400/30">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+                        <span className="text-xs font-medium text-emerald-300">
+                          {t("pricing.payment.platforms")}
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="space-y-3 pt-4 border-t border-white/10">

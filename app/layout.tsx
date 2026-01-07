@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/contexts/LanguageContext";
 import Navbar from "@/components/Navbar";
+import Providers from "@/components/Providers";
+import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import {
   generateMetadata as genMeta,
   generateStructuredData,
   getLangCode,
 } from "@/lib/metadata";
 import type { Locale } from "@/lib/i18n";
-import DynamicLang from "@/components/DynamicLang";
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   preload: true,
@@ -180,12 +180,12 @@ export default function RootLayout({
         />
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
-      <body className={`${inter.className} antialiased`}>
-        <LanguageProvider>
-          <DynamicLang />
+      <body className={`${outfit.className} antialiased`}>
+        <Providers>
           <Navbar />
           {children}
-        </LanguageProvider>
+          <FloatingWhatsAppButton />
+        </Providers>
       </body>
     </html>
   );

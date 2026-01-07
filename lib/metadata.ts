@@ -174,7 +174,7 @@ export function generateStructuredData(locale: Locale = "es") {
       logo: "https://dialogato.com/logo.png",
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+506-8888-8888",
+        telephone: "+506-6262-4735",
         contactType: "Customer Service",
         areaServed: "CR",
         availableLanguage: ["Spanish", "English", "Chinese"],
