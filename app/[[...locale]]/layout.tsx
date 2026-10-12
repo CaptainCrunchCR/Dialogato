@@ -18,8 +18,10 @@ const outfit = Outfit({
   preload: true,
 });
 
-// Generate metadata with default locale (Spanish for LATAM)
-export const metadata: Metadata = genMeta("es");
+type Params = { locale?: string[] };
+
+const localeFromParams = (params: Params) =>
+  (params.locale?.[0] ?? defaultLocale) as Locale;
 
 // Build "/" (Spanish), "/en" and "/zh"; any other path is a 404
 export const dynamicParams = false;
@@ -30,14 +32,18 @@ export function generateStaticParams() {
   }));
 }
 
+export function generateMetadata({ params }: { params: Params }): Metadata {
+  return genMeta(localeFromParams(params));
+}
+
 export default function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale?: string[] };
+  params: Params;
 }) {
-  const locale = (params.locale?.[0] ?? defaultLocale) as Locale;
+  const locale = localeFromParams(params);
   const structuredData = generateStructuredData(locale);
   const langCode = getLangCode(locale);
 
@@ -48,7 +54,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData.software),
+            __html: JSON.stringify(structuredData.service),
           }}
         />
         <script
