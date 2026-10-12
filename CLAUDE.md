@@ -32,5 +32,6 @@ npx eslint --no-eslintrc -c .eslintrc.json --ext .ts,.tsx app components context
 
 - Tracking: https://github.com/users/CaptainCrunchCR/projects/9 (group issues, tickets as sub-issues).
 - One branch and PR per group: `<type>/<group#>-<slug>`; at least one commit per ticket with `Closes #<ticket>`.
-- Push and open PRs only after explicit approval. Never rewrite `main`.
+- Gates, each needing human review and explicit approval: **plan** (no code before approval) → **code** (review the uncommitted diff; no commit before approval) → **push** → **PR** (no auto-merge) → **next ticket**.
+- Never rewrite `main`.
 - Commit subjects ≤ 50 chars. No AI attribution.
