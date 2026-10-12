@@ -7,13 +7,12 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { Locale, Translations, parseProperties, interpolate } from "@/lib/i18n";
+import { Locale, dictionaries, interpolate } from "@/lib/i18n";
 
 interface LanguageContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: string, params?: Record<string, string | number>) => string;
-  isLoading: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -25,45 +24,15 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [locale, setLocaleState] = useState<Locale | null>(null);
-  const [translations, setTranslations] = useState<Translations>({});
-  const [isLoading, setIsLoading] = useState(true);
+  // Spanish is rendered at build time; a saved preference is applied after mount
+  const [locale, setLocaleState] = useState<Locale>("es");
 
-  // Set initial locale on mount - defaults to Spanish for LATAM market
   useEffect(() => {
     const savedLocale = localStorage.getItem("locale") as Locale;
-    if (
-      savedLocale &&
-      (savedLocale === "en" || savedLocale === "es" || savedLocale === "zh")
-    ) {
+    if (Object.keys(dictionaries).includes(savedLocale)) {
       setLocaleState(savedLocale);
-    } else {
-      // Default to Spanish for LATAM market
-      setLocaleState("es");
-      localStorage.setItem("locale", "es");
     }
   }, []);
-
-  // Load translations when locale changes
-  useEffect(() => {
-    if (!locale) return;
-
-    async function loadTranslations() {
-      setIsLoading(true);
-      try {
-        const response = await fetch(`/locales/${locale}.properties`);
-        const content = await response.text();
-        const parsed = parseProperties(content);
-        setTranslations(parsed);
-      } catch (error) {
-        console.error("Failed to load translations:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadTranslations();
-  }, [locale]);
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
@@ -71,7 +40,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   };
 
   const t = (key: string, params?: Record<string, string | number>): string => {
-    const translation = translations[key] || key;
+    const translation = dictionaries[locale][key] || key;
 
     if (params) {
       return interpolate(translation, params);
@@ -80,15 +49,8 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     return translation;
   };
 
-  // Don't render children until locale is set and translations are loaded
-  if (!locale || isLoading) {
-    return null;
-  }
-
   return (
-    <LanguageContext.Provider
-      value={{ locale: locale as Locale, setLocale, t, isLoading }}
-    >
+    <LanguageContext.Provider value={{ locale, setLocale, t }}>
       {children}
     </LanguageContext.Provider>
   );
