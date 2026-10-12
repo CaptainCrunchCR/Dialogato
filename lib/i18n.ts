@@ -1,4 +1,7 @@
 // Utility functions for i18n
+import en from "@/locales/en.properties";
+import es from "@/locales/es.properties";
+import zh from "@/locales/zh.properties";
 
 export type Locale = "en" | "es" | "zh";
 
@@ -33,6 +36,13 @@ export function parseProperties(content: string): Translations {
 
   return translations;
 }
+
+// Translations bundled at build time so pages render with content
+export const dictionaries: Record<Locale, Translations> = {
+  en: parseProperties(en),
+  es: parseProperties(es),
+  zh: parseProperties(zh),
+};
 
 // Replace placeholders in translation strings
 export function interpolate(
