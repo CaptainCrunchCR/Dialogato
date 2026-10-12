@@ -1,45 +1,19 @@
 import { MetadataRoute } from "next";
+import { defaultLocale, localePath, locales } from "@/lib/i18n";
+import { absoluteUrl } from "@/lib/metadata";
 
+// One entry per locale, each listing every locale as an hreflang alternate
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://dialogato.com";
+  const languages = {
+    ...Object.fromEntries(locales.map((l) => [l, absoluteUrl(localePath(l))])),
+    "x-default": absoluteUrl(localePath(defaultLocale)),
+  };
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-      alternates: {
-        languages: {
-          es: `${baseUrl}/es`,
-          en: `${baseUrl}/en`,
-          zh: `${baseUrl}/zh`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/#features`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#pricing`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#guarantee`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/#cta`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-  ];
+  return locales.map((locale) => ({
+    url: absoluteUrl(localePath(locale)),
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: locale === defaultLocale ? 1 : 0.8,
+    alternates: { languages },
+  }));
 }
