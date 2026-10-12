@@ -1,6 +1,6 @@
 # Dialogato
 
-Next.js 14 landing page (App Router, TypeScript, Tailwind), deployed to Cloudflare Pages as a static export.
+Next.js 14 landing page (App Router, TypeScript, Tailwind), deployed to Cloudflare Workers as static assets (static export).
 
 ## Product rules
 
@@ -12,7 +12,7 @@ Next.js 14 landing page (App Router, TypeScript, Tailwind), deployed to Cloudfla
 
 ## Architecture
 
-- Static export only (`output: "export"` → `out/`): no API routes, middleware, cookies or runtime server code. Cloudflare Pages: build `npx next build`, output `out`.
+- Static export only (`output: "export"` → `out/`): no API routes, middleware, cookies or runtime server code. Cloudflare Workers Builds: build `npx next build`, deploy `npx wrangler deploy` (serves `out/` per `wrangler.jsonc`).
 - `app/[[...locale]]/` is the root layout; `dynamicParams = false`, `<html lang>` set per locale.
 - Translations: `locales/*.json`, loaded server-only in `lib/dictionaries.ts`; never fetched at runtime. Every locale must have every Spanish key (type-checked, fails the build).
 - Use `locales`, `defaultLocale` and `localePath()` from `lib/i18n.ts`; locale comes from the URL only (no `localStorage`).
