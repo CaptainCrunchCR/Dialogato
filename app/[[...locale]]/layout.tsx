@@ -48,7 +48,7 @@ export default function RootLayout({
   const langCode = getLangCode(locale);
 
   return (
-    <html lang={langCode} className="scroll-smooth">
+    <html lang={langCode}>
       <head>
         {/* Structured Data for SEO */}
         <script
