@@ -7,7 +7,7 @@ Next.js 14 landing page (App Router, TypeScript, Tailwind), deployed to Cloudfla
 - SEO first: every page must be fully indexable.
 - Landing page only, in Spanish (`/`, always default), English (`/en`) and Chinese (`/zh`).
 - No PWA. Future assets come from DigitalOcean Spaces via one base-URL setting.
-- WhatsApp CTAs are disabled behind a flag, never deleted. Contact: hola@dialogato.com.
+- WhatsApp contact goes to a temporary business line while the AI agent is in development; number and email (hola@dialogato.com, single address) live only in `lib/contact.ts`.
 - No Markdown files except this one.
 
 ## Architecture

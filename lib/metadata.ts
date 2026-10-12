@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Locale, defaultLocale, localePath, locales } from "./i18n";
 import { dictionaries } from "./dictionaries";
+import { CONTACT } from "./contact";
 
 export const siteUrl = "https://dialogato.com";
 
@@ -92,7 +93,7 @@ export function generateStructuredData(locale: Locale = "es") {
       url: siteUrl,
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+506-6262-4735",
+        telephone: CONTACT.whatsapp,
         contactType: "Customer Service",
         areaServed: "CR",
         availableLanguage: ["Spanish", "English", "Chinese"],

@@ -2,6 +2,7 @@
 
 import { Zap } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { whatsappHref } from "@/lib/contact";
 
 export default function CTA() {
   const { t } = useLanguage();
@@ -41,6 +42,14 @@ export default function CTA() {
             <p className="text-lg sm:text-xl text-slate-300 leading-relaxed">
               {t("cta.experience.description")}
             </p>
+            <a
+              href={whatsappHref(t("cta.whatsapp.message"))}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-block mt-8"
+            >
+              {t("cta.whatsapp.button")}
+            </a>
           </div>
         </div>
       </div>

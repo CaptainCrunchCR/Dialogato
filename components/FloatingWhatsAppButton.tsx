@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { whatsappHref } from "@/lib/contact";
 
 const WhatsAppIcon = () => (
   <svg
@@ -19,8 +20,6 @@ export default function FloatingWhatsAppButton() {
   const [showPulse, setShowPulse] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
 
-  const whatsappNumber = "50662624735";
-  const whatsappMessage = encodeURIComponent(t("cta.whatsapp.message"));
 
   // Show button after page load
   useEffect(() => {
@@ -38,7 +37,7 @@ export default function FloatingWhatsAppButton() {
 
   const handleClick = () => {
     window.open(
-      `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
+      whatsappHref(t("cta.whatsapp.message")),
       "_blank",
       "noopener,noreferrer"
     );
@@ -51,13 +50,13 @@ export default function FloatingWhatsAppButton() {
       {/* Optional text label - hidden on mobile */}
       <div className="hidden lg:flex items-center gap-3">
         <span className="text-sm font-medium text-gray-800 bg-white px-4 py-2 rounded-full shadow-md whitespace-nowrap">
-          Chat with us
+          {t("cta.whatsapp.button")}
         </span>
 
         {/* Circular Button */}
         <button
           onClick={handleClick}
-          aria-label="Contact us on WhatsApp"
+          aria-label={t("cta.whatsapp.button")}
           className={`
             relative
             w-12 h-12 md:w-14 md:h-14
@@ -81,7 +80,7 @@ export default function FloatingWhatsAppButton() {
       {/* Mobile: Button only */}
       <button
         onClick={handleClick}
-        aria-label="Contact us on WhatsApp"
+        aria-label={t("cta.whatsapp.button")}
         className={`
           lg:hidden
           relative
