@@ -22,7 +22,6 @@
     background-attachment: fixed;
     position: relative;
     min-height: 100vh;
-    overflow-x: hidden;
     transition: background 0.3s ease;
   }
 
