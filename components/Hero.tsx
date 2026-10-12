@@ -20,7 +20,7 @@ export default function Hero() {
       <div className="container-custom relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Punchy Badge */}
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent-500/10 to-secondary-500/10 border border-accent-400/30 px-4 py-2 rounded-full mb-4 sm:mb-6 backdrop-blur-xl animate-slide-up">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent-500/10 to-secondary-500/10 border border-accent-400/30 px-4 py-2 rounded-full mb-4 sm:mb-6 backdrop-blur-xl animate-rise">
             <Zap
               size={16}
               className="text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"
@@ -33,7 +33,7 @@ export default function Hero() {
 
           {/* Powerful Headline */}
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 sm:mb-6 leading-[1.1] tracking-tight animate-slide-up"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 sm:mb-6 leading-[1.1] tracking-tight animate-rise"
             style={{ animationDelay: "0.1s" }}
           >
             <span className="block text-white">{t("hero.headline.part1")}</span>
@@ -44,7 +44,7 @@ export default function Hero() {
 
           {/* Short Punchy Subheadline */}
           <p
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed animate-slide-up px-4 sm:px-0"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed animate-rise px-4 sm:px-0"
             style={{ animationDelay: "0.2s" }}
           >
             {t("hero.subheadline")}
@@ -52,7 +52,7 @@ export default function Hero() {
 
           {/* Single Powerful CTA */}
           <div
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-10 animate-slide-up"
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-10 animate-rise"
             style={{ animationDelay: "0.3s" }}
           >
             <a
@@ -70,7 +70,7 @@ export default function Hero() {
 
           {/* Compact Stats - Inline */}
           <div
-            className="flex flex-wrap justify-center gap-6 sm:gap-8 text-center animate-slide-up"
+            className="flex flex-wrap justify-center gap-6 sm:gap-8 text-center animate-rise"
             style={{ animationDelay: "0.4s" }}
           >
             <div className="group">

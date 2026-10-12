@@ -8,16 +8,10 @@ import Pricing from "@/components/Pricing";
 import Guarantee from "@/components/Guarantee";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
-import MaintenanceMode from "@/components/MaintenanceMode";
-import { isMaintenanceMode } from "@/lib/maintenance";
 
 export default function Home() {
-  if (isMaintenanceMode()) {
-    return <MaintenanceMode />;
-  }
-
   return (
-    <main className="page-transition">
+    <main>
       <Hero />
       <Features />
       <StormAnimation />

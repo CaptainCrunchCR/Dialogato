@@ -71,6 +71,8 @@ const config: Config = {
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.6s ease-out",
+        // Above-the-fold entrance: moves only, never hides content (LCP)
+        rise: "rise 0.6s ease-out both",
         float: "float 6s ease-in-out infinite",
         glow: "glow 2s ease-in-out infinite alternate",
         "rotate-slow": "rotate 20s linear infinite",
@@ -85,6 +87,10 @@ const config: Config = {
         slideUp: {
           "0%": { transform: "translateY(20px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        rise: {
+          "0%": { transform: "translateY(20px)" },
+          "100%": { transform: "translateY(0)" },
         },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },

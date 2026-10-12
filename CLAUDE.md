@@ -17,6 +17,13 @@ Next.js 14 landing page (App Router, TypeScript, Tailwind), deployed to Cloudfla
 - Translations: `locales/*.json`, loaded server-only in `lib/dictionaries.ts`; never fetched at runtime. Every locale must have every Spanish key (type-checked, fails the build).
 - Use `locales`, `defaultLocale` and `localePath()` from `lib/i18n.ts`; locale comes from the URL only (no `localStorage`).
 
+## Core Web Vitals
+
+- Top priority, on par with SEO: fix every proven CLS/LCP issue. Changes that need a bigger visual change are tested by the user before code-gate approval.
+- Prove the root cause (measure which element shifts or paints late, when and why) before fixing; never apply CSS that only hides the symptom.
+- Keep the blast radius minimal: avoid changing shared keyframes, utilities or global rules; when unavoidable, list every affected place and screenshot it.
+- Measure before/after on `/`, `/en`, `/zh` at desktop and mobile widths.
+
 ## Commands
 
 ```bash
