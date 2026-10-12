@@ -2,6 +2,7 @@
 
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { CONTACT } from "@/lib/contact";
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -72,10 +73,10 @@ export default function Footer() {
                   className="flex-shrink-0 mt-1 text-primary-400"
                 />
                 <a
-                  href={`mailto:${t("footer.contact.emailaddress")}`}
+                  href={`mailto:${CONTACT.email}`}
                   className="hover:text-primary-400 transition-colors"
                 >
-                  {t("footer.contact.emailaddress")}
+                  {CONTACT.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
