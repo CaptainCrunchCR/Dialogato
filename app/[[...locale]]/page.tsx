@@ -8,7 +8,6 @@ import Pricing from "@/components/Pricing";
 import Guarantee from "@/components/Guarantee";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
-import PWAInstall from "@/components/PWAInstall";
 import MaintenanceMode from "@/components/MaintenanceMode";
 import { isMaintenanceMode } from "@/lib/maintenance";
 
@@ -29,7 +28,6 @@ export default function Home() {
       <Guarantee />
       <CTA />
       <Footer />
-      <PWAInstall />
     </main>
   );
 }

@@ -113,20 +113,11 @@ export function generateMetadata(locale: Locale = "es"): Metadata {
       siteName: "Dialogato",
       locale: langCode,
       type: "website",
-      images: [
-        {
-          url: "/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: meta.ogTitle,
-        },
-      ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary",
       title: meta.twitterTitle,
       description: meta.twitterDescription,
-      images: ["/twitter-image.jpg"],
     },
     robots: {
       index: true,
@@ -171,7 +162,6 @@ export function generateStructuredData(locale: Locale = "es") {
       "@type": "Organization",
       name: "Dialogato",
       url: "https://dialogato.com",
-      logo: "https://dialogato.com/logo.png",
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+506-6262-4735",
