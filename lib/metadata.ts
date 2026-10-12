@@ -71,25 +71,19 @@ export function generateStructuredData(locale: Locale = "es") {
   const t = dictionaries[locale];
 
   return {
-    software: {
+    service: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "Service",
       name: "Dialogato",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
+      description: t["meta.schema.description"],
+      url: absoluteUrl(localePath(locale)),
+      provider: { "@type": "Organization", name: "Dialogato", url: siteUrl },
       offers: {
         "@type": "Offer",
         price: t["meta.schema.price"],
         priceCurrency: t["meta.schema.currency"],
         availability: "https://schema.org/InStock",
-        priceValidUntil: "2026-12-31",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5",
-        ratingCount: "47",
-      },
-      description: t["meta.schema.description"],
     },
     organization: {
       "@context": "https://schema.org",

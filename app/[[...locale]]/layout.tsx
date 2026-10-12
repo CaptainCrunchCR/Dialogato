@@ -54,7 +54,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData.software),
+            __html: JSON.stringify(structuredData.service),
           }}
         />
         <script
