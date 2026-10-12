@@ -1,12 +1,12 @@
-// Server-only: translations parsed at build time. Each page passes only its
-// own dictionary to the client, so the other locales are never shipped.
-import en from "@/locales/en.properties";
-import es from "@/locales/es.properties";
-import zh from "@/locales/zh.properties";
-import { Locale, Translations, parseProperties } from "./i18n";
+// Server-only: each page passes only its own dictionary to the client,
+// so the other locales are never shipped.
+import en from "@/locales/en.json";
+import es from "@/locales/es.json";
+import zh from "@/locales/zh.json";
+import type { Locale } from "./i18n";
 
-export const dictionaries: Record<Locale, Translations> = {
-  en: parseProperties(en),
-  es: parseProperties(es),
-  zh: parseProperties(zh),
-};
+// Spanish is the reference: a key missing in any locale fails type-checking,
+// which fails `next build`
+type Dictionary = Record<keyof typeof es, string>;
+
+export const dictionaries = { es, en, zh } satisfies Record<Locale, Dictionary>;

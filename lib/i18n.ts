@@ -14,34 +14,6 @@ export interface Translations {
   [key: string]: string;
 }
 
-// Parse .properties file content
-export function parseProperties(content: string): Translations {
-  const translations: Translations = {};
-  const lines = content.split("\n");
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-
-    // Skip empty lines and comments
-    if (!trimmed || trimmed.startsWith("#")) {
-      continue;
-    }
-
-    // Find the first = sign
-    const equalIndex = trimmed.indexOf("=");
-    if (equalIndex === -1) {
-      continue;
-    }
-
-    const key = trimmed.substring(0, equalIndex).trim();
-    const value = trimmed.substring(equalIndex + 1).trim();
-
-    translations[key] = value;
-  }
-
-  return translations;
-}
-
 // Replace placeholders in translation strings
 export function interpolate(
   text: string,

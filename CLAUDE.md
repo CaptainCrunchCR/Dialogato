@@ -14,7 +14,7 @@ Next.js 14 landing page (App Router, TypeScript, Tailwind), deployed to Cloudfla
 
 - Static export only: no API routes, middleware, cookies or runtime server code.
 - `app/[[...locale]]/` is the root layout; `dynamicParams = false`, `<html lang>` set per locale.
-- Translations: `locales/*.properties`, parsed server-only in `lib/dictionaries.ts`; never fetched at runtime.
+- Translations: `locales/*.json`, loaded server-only in `lib/dictionaries.ts`; never fetched at runtime. Every locale must have every Spanish key (type-checked, fails the build).
 - Use `locales`, `defaultLocale` and `localePath()` from `lib/i18n.ts`; locale comes from the URL only (no `localStorage`).
 
 ## Commands
@@ -22,7 +22,7 @@ Next.js 14 landing page (App Router, TypeScript, Tailwind), deployed to Cloudfla
 ```bash
 NEXT_TELEMETRY_DISABLED=1 npx next build
 npx tsc --noEmit
-npx eslint --no-eslintrc -c .eslintrc.json --ext .ts,.tsx app components contexts lib locales
+npx eslint --no-eslintrc -c .eslintrc.json --ext .ts,.tsx app components contexts lib
 ```
 
 - Telemetry must be disabled locally (`EXDEV` error). Use the explicit ESLint config (worktrees nest inside the repo).
