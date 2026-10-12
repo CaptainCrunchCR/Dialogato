@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -14,11 +13,7 @@ interface NavbarProps {
 export default function Navbar({ simplified = false }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
-  const pathname = usePathname();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
-
-  const isHomePage = pathname === "/";
-  const isHowItWorksPage = pathname === "/how-it-works";
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -37,32 +32,10 @@ export default function Navbar({ simplified = false }: NavbarProps) {
   }, [isOpen]);
 
   const navItems = [
-    {
-      name: t("nav.features"),
-      href: "/#features",
-      isRoute: false,
-    },
-    {
-      name: t("nav.benefits"),
-      href: "/#benefits",
-      isRoute: false,
-    },
-    {
-      name: t("nav.pricing"),
-      href: "/#pricing",
-      isRoute: false,
-    },
-    {
-      name: t("nav.guarantee"),
-      href: "/#guarantee",
-      isRoute: false,
-    },
-    {
-      name: t("nav.howitworks"),
-      href: "/how-it-works",
-      isRoute: true,
-      isActive: isHowItWorksPage,
-    },
+    { name: t("nav.features"), href: "/#features" },
+    { name: t("nav.benefits"), href: "/#benefits" },
+    { name: t("nav.pricing"), href: "/#pricing" },
+    { name: t("nav.guarantee"), href: "/#guarantee" },
   ];
 
   return (
@@ -90,20 +63,10 @@ export default function Navbar({ simplified = false }: NavbarProps) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`relative px-2 xl:px-4 py-2 rounded-xl transition-all duration-300 font-medium text-sm xl:text-base group whitespace-nowrap ${
-                    item.isActive
-                      ? "text-accent-400"
-                      : "text-slate-300 hover:text-accent-300"
-                  }`}
+                  className="relative px-2 xl:px-4 py-2 rounded-xl transition-all duration-300 font-medium text-sm xl:text-base group whitespace-nowrap text-slate-300 hover:text-accent-300"
                 >
                   <span className="relative z-10">{item.name}</span>
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-r from-accent-500/10 to-secondary-500/10 rounded-xl transition-opacity ${
-                      item.isActive
-                        ? "opacity-100"
-                        : "opacity-0 group-hover:opacity-100"
-                    }`}
-                  ></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent-500/10 to-secondary-500/10 rounded-xl transition-opacity opacity-0 group-hover:opacity-100"></div>
                 </Link>
               ))}
             </div>
@@ -162,11 +125,7 @@ export default function Navbar({ simplified = false }: NavbarProps) {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block px-4 py-3 rounded-xl transition-all duration-300 font-medium ${
-                  item.isActive
-                    ? "text-accent-400 bg-gradient-to-r from-accent-500/10 to-secondary-500/10"
-                    : "text-slate-300 hover:text-accent-300 hover:bg-gradient-to-r hover:from-accent-500/10 hover:to-secondary-500/10"
-                }`}
+                className="block px-4 py-3 rounded-xl transition-all duration-300 font-medium text-slate-300 hover:text-accent-300 hover:bg-gradient-to-r hover:from-accent-500/10 hover:to-secondary-500/10"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
