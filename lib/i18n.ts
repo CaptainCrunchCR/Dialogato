@@ -1,9 +1,14 @@
 // Utility functions for i18n
-import en from "@/locales/en.properties";
-import es from "@/locales/es.properties";
-import zh from "@/locales/zh.properties";
 
-export type Locale = "en" | "es" | "zh";
+export const locales = ["es", "en", "zh"] as const;
+export type Locale = (typeof locales)[number];
+
+// Spanish is always served at "/", other locales under "/<locale>"
+export const defaultLocale: Locale = "es";
+
+export function localePath(locale: Locale): string {
+  return locale === defaultLocale ? "/" : `/${locale}`;
+}
 
 export interface Translations {
   [key: string]: string;
@@ -36,13 +41,6 @@ export function parseProperties(content: string): Translations {
 
   return translations;
 }
-
-// Translations bundled at build time so pages render with content
-export const dictionaries: Record<Locale, Translations> = {
-  en: parseProperties(en),
-  es: parseProperties(es),
-  zh: parseProperties(zh),
-};
 
 // Replace placeholders in translation strings
 export function interpolate(

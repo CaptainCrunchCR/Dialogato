@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ChevronDown } from "lucide-react";
-import type { Locale } from "@/lib/i18n";
+import { Locale, localePath } from "@/lib/i18n";
 
 // SVG Flag Components with Circle
 const USFlag = () => (
@@ -50,7 +51,7 @@ const ChinaFlag = () => (
 );
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale } = useLanguage();
+  const { locale } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -92,11 +93,6 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLanguageChange = (code: Locale) => {
-    setLocale(code);
-    setIsOpen(false);
-  };
-
   return (
     <div className="relative" ref={dropdownRef}>
       <button
@@ -121,9 +117,11 @@ export default function LanguageSwitcher() {
       {isOpen && (
         <div className="absolute top-full mt-2 right-0 backdrop-blur-2xl bg-gradient-to-b from-primary-950/98 to-secondary-900/98 border border-accent-400/30 rounded-lg sm:rounded-xl shadow-neon overflow-hidden w-[160px] sm:w-[200px] animate-slide-up z-50">
           {languages.map((lang, index) => (
-            <button
+            <Link
               key={lang.code}
-              onClick={() => handleLanguageChange(lang.code)}
+              href={localePath(lang.code)}
+              hrefLang={lang.code}
+              onClick={() => setIsOpen(false)}
               className={`w-full px-4 py-3 text-left hover:bg-gradient-to-r hover:from-accent-500/10 hover:to-secondary-500/10 transition-all duration-300 flex items-center gap-3 group/item ${
                 locale === lang.code
                   ? "bg-gradient-to-r from-accent-500/10 to-secondary-500/10"
@@ -142,7 +140,7 @@ export default function LanguageSwitcher() {
               {locale === lang.code && (
                 <div className="w-2 h-2 rounded-full bg-accent-400 shadow-glow flex-shrink-0 animate-pulse"></div>
               )}
-            </button>
+            </Link>
           ))}
         </div>
       )}

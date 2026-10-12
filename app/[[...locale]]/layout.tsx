@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Navbar from "@/components/Navbar";
-import Providers from "@/components/Providers";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import {
   generateMetadata as genMeta,
   generateStructuredData,
   getLangCode,
 } from "@/lib/metadata";
-import type { Locale } from "@/lib/i18n";
+import { Locale, defaultLocale, locales } from "@/lib/i18n";
+import { dictionaries } from "@/lib/dictionaries";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -17,29 +18,28 @@ const outfit = Outfit({
   preload: true,
 });
 
-// Get default locale from browser or default to Spanish for LATAM market
-function getDefaultLocale(): Locale {
-  if (typeof window !== "undefined") {
-    const saved = localStorage.getItem("locale") as Locale;
-    if (saved && ["en", "es", "zh"].includes(saved)) {
-      return saved;
-    }
-  }
-  return "es"; // Default to Spanish for LATAM market
-}
-
 // Generate metadata with default locale (Spanish for LATAM)
 export const metadata: Metadata = genMeta("es");
 
+// Build "/" (Spanish), "/en" and "/zh"; any other path is a 404
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({
+    locale: locale === defaultLocale ? [] : [locale],
+  }));
+}
+
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { locale?: string[] };
 }) {
-  // Default to Spanish for server-side rendering
-  const defaultLocale: Locale = "es";
-  const structuredData = generateStructuredData(defaultLocale);
-  const langCode = getLangCode(defaultLocale);
+  const locale = (params.locale?.[0] ?? defaultLocale) as Locale;
+  const structuredData = generateStructuredData(locale);
+  const langCode = getLangCode(locale);
 
   return (
     <html lang={langCode} className="scroll-smooth">
@@ -181,11 +181,11 @@ export default function RootLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body className={`${outfit.className} antialiased`}>
-        <Providers>
+        <LanguageProvider locale={locale} translations={dictionaries[locale]}>
           <Navbar />
           {children}
           <FloatingWhatsAppButton />
-        </Providers>
+        </LanguageProvider>
       </body>
     </html>
   );
