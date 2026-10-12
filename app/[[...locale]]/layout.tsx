@@ -65,21 +65,7 @@ export default function RootLayout({
 
         <meta name="theme-color" content="#0f172a" />
 
-        {/* Standard Icons */}
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/icons/icon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/icons/icon-16x16.png"
-        />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
       </head>
       <body className={`${outfit.className} antialiased`}>
         <LanguageProvider locale={locale} translations={dictionaries[locale]}>
